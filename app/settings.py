@@ -116,7 +116,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",
+    config("BASE_URL_VUE")
 ]
 
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
