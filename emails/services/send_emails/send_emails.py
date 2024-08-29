@@ -1,7 +1,6 @@
 from app import settings
-from django.template import Context, Template
 from django.core.mail import EmailMessage
-from django.template.loader import get_template
+from django.template.loader import render_to_string
 
 
 class SendEmail:
@@ -9,15 +8,10 @@ class SendEmail:
         self.subscription = subscription
 
     def render_context(self):
-        template_path = "emails/services/send_emails/template.html"
-        with open(template_path, "r") as file:
-            template_content = file.read()
-        template = Template(template_content)
-        context = Context({
+        context = {
             "name": self.subscription["name"],
-        })
-
-        return template.render(context)
+        }
+        return render_to_string('emails/services/send_emails/template.html', context)
 
     def send(self):
         template = self.render_context()
